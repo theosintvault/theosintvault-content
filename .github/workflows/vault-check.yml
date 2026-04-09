@@ -1,0 +1,27 @@
+name: Weekly Vault Health Check
+
+on:
+  schedule:
+    - cron: '0 0 * * 0'
+  workflow_dispatch:
+
+jobs:
+  health-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run link check
+        run: |
+          echo "Checking theosintvault.io health..."
+          curl -I https://theosintvault.io
+
+      - name: Log Activity
+        run: |
+          date > last_check.txt
+          git config user.name "GitHub Actions Bot"
+          git config user.email "actions@github.com"
+          git add last_check.txt
+          git commit -m "Automated Weekly Health Check"
+          git push
