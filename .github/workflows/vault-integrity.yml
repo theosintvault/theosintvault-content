@@ -1,0 +1,31 @@
+name: Vault-Integrity-Scanner
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  audit-archive:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Sync Node
+        uses: actions/checkout@v4
+
+      - name: Structure Validation
+        run: |
+          echo "Initiating vault integrity audit..."
+          
+          # Verify core documentation directory
+          if [ ! -d "docs" ]; then
+            echo "Critical Error: /docs directory not found."
+            exit 1
+          fi
+
+          # Scan for empty intelligence files
+          find . -name "*.md" -type f -size 0 | while read -r empty_file; do
+            echo "Integrity Failure: $empty_file contains no data."
+            exit 1
+          done
+
+          echo "Audit complete. Archive integrity confirmed."
