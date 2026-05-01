@@ -7,10 +7,6 @@ on:
         required: true
         default: 'theosintvault'
 
-env:
-  # This kills the Node 20 warning by forcing the newer engine
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-
 jobs:
   investigate:
     runs-on: ubuntu-latest
@@ -19,17 +15,16 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Hardened Python Environment
-        uses: actions/setup-python@v5  # Updated version to support Node 24
+        uses: actions/setup-python@v5 # Updated to v5 to fix Node 20 warning
         with:
           python-version: '3.12'
 
-      - name: Install Core Modules
+      - name: Install Dependencies
         run: |
           python -m pip install --upgrade pip
           pip install aiohttp
 
       - name: Execute Pivot Engine
         run: |
-          # The 'set -e' ensures the workflow stops immediately if the script fails
-          set -e
+          # The script must exist in the root as 'core_crawler.py'
           python core_crawler.py "${{ github.event.inputs.username }}"
