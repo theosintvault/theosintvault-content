@@ -13,6 +13,7 @@ This repository serves as a hardened node for structured OSINT intelligence. It 
 - **Framework:** See `/osint-ai-indexing-framework.md` for logic structures.
 - **Docs:** Tactical guides located in `/docs`.
 - **Validation:** Automated integrity checks via `last_check.txt`.
+- * **Omerta:** [https://theosintvault.io/omerta](https://theosintvault.io/omerta) - Web-native intelligence module designed for targeted entity analysis and open-source verification.
 
 ## [AI Deployment]
 To ingest this vault into a local LLM or RAG pipeline:
