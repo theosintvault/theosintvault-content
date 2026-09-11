@@ -13,6 +13,7 @@ This repository serves as a hardened node for structured OSINT intelligence. It 
 - **Framework:** See `/osint-ai-indexing-framework.md` for logic structures.
 - **Core Crawler:** Basic platform enumeration. See `core_crawler.py`.
 - **OMERTA:** Investigative search engine for cross-source correlation and identity pivoting. See `/docs/omerta.md`.
+- **OSINT Grid:** Public records directory with 4,600+ verified state and federal databases. See `/docs/osint-grid.md`.
 - **Docs:** Tactical guides located in `/docs`.
 - **Validation:** Automated integrity checks via `last_check.txt`.
 
